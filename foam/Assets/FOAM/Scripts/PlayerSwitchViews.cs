@@ -39,7 +39,9 @@ public class PlayerSwitchViews : MonoBehaviour
                 thirdPersonCam.gameObject.SetActive(true);
                 isFirstPerson = false;
                 shaderController.enabled = true;
-                shaderController.StartEffect();
+
+                shaderController.StartChangeViewEffect(true);
+                
                 Debug.Log("to third person");
             }
             else
@@ -49,6 +51,10 @@ public class PlayerSwitchViews : MonoBehaviour
                 firstPersonCam.gameObject.SetActive(true);
                 thirdPersonCam.gameObject.SetActive(false);
                 isFirstPerson = true;
+
+                shaderController.enabled = true;
+                shaderController.StartChangeViewEffect(false);
+
                 Debug.Log("to first person");
             }
         }

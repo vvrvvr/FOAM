@@ -6,7 +6,6 @@ public class ShaderController : MonoBehaviour
 {
     
     [SerializeField] private float effectTime;
-    //change view
     public Material[] ChangeViewMaterials;
     //public GameObject respawnParticles;
     Material[] DefaultMaterials;
@@ -22,6 +21,7 @@ public class ShaderController : MonoBehaviour
     float m_EndTime;
 
     bool m_Started = false;
+    private bool isFirstPerson;
 
     void Awake()
     {
@@ -47,35 +47,61 @@ public class ShaderController : MonoBehaviour
 
     void OnEnable()
     {
-        m_Started = false;
-        m_Renderer.materials = ChangeViewMaterials;
-        Set(0.001f);
-        m_Renderer.enabled = false;
+        //чёнить допишем
     }
 
-    public void StartEffect()
+    public void StartChangeViewEffect(bool isFP)
     {
+        isFirstPerson = isFP;
+        m_Renderer.materials = ChangeViewMaterials;
         m_Renderer.enabled = true;
-
-        //respawnParticles.SetActive(true);
         m_Started = true;
-        m_Timer = 0.0f;
+        if (isFirstPerson)
+        {
+            effectTime = 1f;
+            m_Timer = 0.0f;
+            Set(0.001f);
+        }
+        else
+        {
+            effectTime = 2f;
+            m_Timer = effectTime;
+            Set(1f);
+        }
     }
 
     void Update()
     {
         if (!m_Started)
             return;
+        ChangeTransition(isFirstPerson);
+        
+    }
 
+    private void ChangeTransition(bool isFirstPerson)
+    {
         float cutoff = Mathf.Clamp(m_Timer / effectTime, 0.01f, 1.0f);
         Set(cutoff);
 
-        m_Timer += Time.deltaTime;
-
-        if (cutoff >= 1.0f)
+        if (isFirstPerson)
         {
-            m_Renderer.materials = DefaultMaterials;
-            this.enabled = false;
+            m_Timer += Time.deltaTime;
+
+            if (cutoff >= 1.0f)
+            {
+                m_Renderer.materials = DefaultMaterials;
+                this.enabled = false;
+            }
+        }
+        else
+        {
+            m_Timer -= Time.deltaTime;
+
+            if (cutoff <= 0.001f)
+            {
+                m_Renderer.materials = DefaultMaterials;
+                this.enabled = false;
+            }
         }
     }
 
