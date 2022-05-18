@@ -48,6 +48,7 @@ public class ShaderController : MonoBehaviour
     void OnEnable()
     {
         //чёнить допишем
+        
     }
 
     public void StartChangeViewEffect(bool isFP)
@@ -64,7 +65,7 @@ public class ShaderController : MonoBehaviour
         }
         else
         {
-            effectTime = 2f;
+            effectTime = 2.5f;
             m_Timer = effectTime;
             Set(1f);
         }
@@ -97,9 +98,10 @@ public class ShaderController : MonoBehaviour
         {
             m_Timer -= Time.deltaTime;
 
-            if (cutoff <= 0.001f)
+            if (cutoff <= 0.17f)
             {
-                m_Renderer.materials = DefaultMaterials;
+                //m_Renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+                //m_Renderer.materials = DefaultMaterials;
                 this.enabled = false;
             }
         }
