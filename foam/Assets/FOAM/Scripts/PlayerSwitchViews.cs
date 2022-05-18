@@ -7,6 +7,7 @@ public class PlayerSwitchViews : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera firstPersonCam;
     [SerializeField] private CinemachineVirtualCamera thirdPersonCam;
     [SerializeField] private GameObject playerObject;
+    [SerializeField] private ShaderController shaderController;
 
     [SerializeField] private Transform thirdPersonCameraRoot;
 
@@ -37,6 +38,8 @@ public class PlayerSwitchViews : MonoBehaviour
                 firstPersonCam.gameObject.SetActive(false);
                 thirdPersonCam.gameObject.SetActive(true);
                 isFirstPerson = false;
+                shaderController.enabled = true;
+                shaderController.StartEffect();
                 Debug.Log("to third person");
             }
             else
