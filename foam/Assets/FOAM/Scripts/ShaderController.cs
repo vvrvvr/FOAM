@@ -22,6 +22,7 @@ public class ShaderController : MonoBehaviour
 
     bool m_Started = false;
     private bool isFirstPerson;
+    private float minCutoff = 0.17f; //0.001f
 
     void Awake()
     {
@@ -61,7 +62,7 @@ public class ShaderController : MonoBehaviour
         {
             effectTime = 1f;
             m_Timer = 0.0f;
-            Set(0.001f);
+            Set(minCutoff);
         }
         else
         {
@@ -98,7 +99,7 @@ public class ShaderController : MonoBehaviour
         {
             m_Timer -= Time.deltaTime;
 
-            if (cutoff <= 0.17f)
+            if (cutoff <= minCutoff)
             {
                 //m_Renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
                 //m_Renderer.materials = DefaultMaterials;
