@@ -81,10 +81,10 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Opacity: 0.418
+    - _Opacity: 0.338
     - _Parallax: 0.02
-    - _Size: 0
-    - _Smooth: 0.287
+    - _Size: 0.05332184
+    - _Smooth: 0.353
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -94,7 +94,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Player_Position: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Position: {r: 0.5038227, g: 0.42457283, b: 25.274197, a: 0}
+    - _Position: {r: 0.5047546, g: 0.44546577, b: 25.27679, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8610853906102374394
 MonoBehaviour:
