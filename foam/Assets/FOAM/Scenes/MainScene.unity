@@ -2765,7 +2765,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4416926083347132227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
@@ -3627,7 +3627,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4416926083347132227}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a3fad020d0c46346ab234ce2b1b5010, type: 3}
   m_Name: 
@@ -3648,12 +3648,12 @@ MonoBehaviour:
   GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 0
-  CinemachineCameraTarget: {fileID: 0}
+    m_Bits: 1
+  CinemachineCameraTarget: {fileID: 1974100083}
   TopClamp: 70
   BottomClamp: -30
   CameraAngleOverride: 0
-  LockCameraPosition: 0
+  LockCameraPosition: 1
 --- !u!4 &6983258930626336602
 Transform:
   m_ObjectHideFlags: 0

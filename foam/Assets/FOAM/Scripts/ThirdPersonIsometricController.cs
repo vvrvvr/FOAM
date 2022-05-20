@@ -150,6 +150,7 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            Debug.Log("root rotation euler: "+ CinemachineCameraTarget.transform.rotation.eulerAngles.x);
         }
 
         private void Update()
@@ -199,16 +200,17 @@ namespace StarterAssets
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                //_cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
             }
 
             // clamp our rotations so our values are limited 360 degrees
             _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
+            //_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
 
             // Cinemachine will follow this target
-            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
+            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(CinemachineCameraTarget.transform.rotation.eulerAngles.x,
                 _cinemachineTargetYaw, 0.0f);
+            
         }
 
         private void Move()
