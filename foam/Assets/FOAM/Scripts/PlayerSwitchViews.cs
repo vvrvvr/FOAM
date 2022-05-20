@@ -17,7 +17,10 @@ public class PlayerSwitchViews : MonoBehaviour
     [SerializeField] private Distance distaince;
 
     private bool isFirstPerson;
+
+    //controllers
     private ThirdPersonController thirdPersonController;
+    private ThirdPersonIsometricController thirdPersonIsometricController;
 
     private void OnEnable()
     {
@@ -36,9 +39,11 @@ public class PlayerSwitchViews : MonoBehaviour
     private void Start()
     {
         thirdPersonController = playerObject.GetComponent<ThirdPersonController>();
+        thirdPersonIsometricController = playerObject.GetComponent<ThirdPersonIsometricController>();
+        CameraSwitcher.SwitchCamera(isometricCam); //удолить
 
         //при старте игры включить нужный вид и контроллер
-        thirdPersonController.enabled = true;
+       // thirdPersonController.enabled = true;
     }
 
     void Update()
@@ -101,6 +106,7 @@ public class PlayerSwitchViews : MonoBehaviour
     {
         
     }
+
     public void ChangeToStaticThirdPerson(CinemachineVirtualCamera cam)
     {
 
