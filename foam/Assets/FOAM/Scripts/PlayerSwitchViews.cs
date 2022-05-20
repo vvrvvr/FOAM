@@ -1,6 +1,8 @@
 using UnityEngine;
 using Cinemachine;
 using StarterAssets;
+using System.IO;
+using System.Collections;
 
 public class PlayerSwitchViews : MonoBehaviour
 {
@@ -38,6 +40,8 @@ public class PlayerSwitchViews : MonoBehaviour
 
     private void Start()
     {
+        CameraSwitcher.SwitchCamera(isometricCam);
+        CameraSwitcher.SwitchCamera(thirdPersonCam);
         thirdPersonController = playerObject.GetComponent<ThirdPersonController>();
         thirdPersonIsometricController = playerObject.GetComponent<ThirdPersonIsometricController>();
         //CameraSwitcher.SwitchCamera(isometricCam); //удолить
@@ -56,16 +60,17 @@ public class PlayerSwitchViews : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (isFirstPerson) //если щас изометрия
-            {
-                ChangeToThirdView(); //изменить на вид от третьего лица
-                isFirstPerson = !isFirstPerson;
+            {                
                 thirdPersonIsometricController.enabled = false;
                 thirdPersonController.enabled = true;
+                ChangeToThirdView(); //изменить на вид от третьего лица
+                isFirstPerson = !isFirstPerson;
             }
             else // если вид от тертьего лица
             {
-                ChangeToIsometricView(); // изменить на изометрию
                 isFirstPerson = !isFirstPerson;
+                
+                ChangeToIsometricView(); // изменить на изометрию
                 thirdPersonIsometricController.enabled = true;
                 thirdPersonController.enabled = false;
             }
@@ -88,6 +93,7 @@ public class PlayerSwitchViews : MonoBehaviour
     {
         CameraSwitcher.SwitchCamera(firstPersonCam);
 
+        
         shaderController.enabled = true;
 
         shaderController.StartChangeViewEffect(false);
@@ -99,22 +105,35 @@ public class PlayerSwitchViews : MonoBehaviour
     {
         CameraSwitcher.SwitchCamera(thirdPersonCam);
 
-        shaderController.enabled = true;
+        if (CameraSwitcher.IsActiveCamera(firstPersonCam))
+        {
+            shaderController.enabled = true;
+            shaderController.StartChangeViewEffect(true);
+        }
 
-        shaderController.StartChangeViewEffect(true);
-
-        Debug.Log("to third person");
+        //Debug.Log("to third person");
     }
 
     private void ChangeToIsometricView()
     {
         CameraSwitcher.SwitchCamera(isometricCam);
-        Debug.Log("to isometric");
+        //Debug.Log("to isometric");
     }
 
     public void ChangeToStaticThirdPerson(CinemachineVirtualCamera cam)
     {
 
+    }
+
+    IEnumerator WaitA()
+    {
+        yield return new WaitForSeconds(1f);
+        
+    }
+    IEnumerator WaitB()
+    {
+        yield return new WaitForSeconds(1f);
+       
     }
 
 }
