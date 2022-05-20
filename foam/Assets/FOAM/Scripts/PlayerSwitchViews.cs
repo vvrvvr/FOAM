@@ -40,10 +40,10 @@ public class PlayerSwitchViews : MonoBehaviour
     {
         thirdPersonController = playerObject.GetComponent<ThirdPersonController>();
         thirdPersonIsometricController = playerObject.GetComponent<ThirdPersonIsometricController>();
-        CameraSwitcher.SwitchCamera(isometricCam); //удолить
+        //CameraSwitcher.SwitchCamera(isometricCam); //удолить
 
         //при старте игры включить нужный вид и контроллер
-       // thirdPersonController.enabled = true;
+        thirdPersonController.enabled = true;
     }
 
     void Update()
@@ -59,11 +59,15 @@ public class PlayerSwitchViews : MonoBehaviour
             {
                 ChangeToThirdView(); //изменить на вид от третьего лица
                 isFirstPerson = !isFirstPerson;
+                thirdPersonIsometricController.enabled = false;
+                thirdPersonController.enabled = true;
             }
-            else
+            else // если вид от тертьего лица
             {
-                ChangeToIsometricView();
+                ChangeToIsometricView(); // изменить на изометрию
                 isFirstPerson = !isFirstPerson;
+                thirdPersonIsometricController.enabled = true;
+                thirdPersonController.enabled = false;
             }
         }
     }
@@ -104,7 +108,8 @@ public class PlayerSwitchViews : MonoBehaviour
 
     private void ChangeToIsometricView()
     {
-        
+        CameraSwitcher.SwitchCamera(isometricCam);
+        Debug.Log("to isometric");
     }
 
     public void ChangeToStaticThirdPerson(CinemachineVirtualCamera cam)
