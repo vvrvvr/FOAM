@@ -109,6 +109,9 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        private Quaternion rootRotation = Quaternion.Euler(new Vector3(40f, 55f, 0f));
+        
+        
 
         private bool IsCurrentDeviceMouse
         {
@@ -121,10 +124,14 @@ namespace StarterAssets
 #endif
             }
         }
-
+        private void OnEnable()
+        {
+            CinemachineCameraTarget.transform.rotation = rootRotation;
+        }
 
         private void Awake()
         {
+            
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -135,7 +142,8 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -150,13 +158,13 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
-            Debug.Log("root rotation euler: "+ CinemachineCameraTarget.transform.rotation.eulerAngles.x);
+
         }
 
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
+            
             JumpAndGravity();
             GroundedCheck();
             Move();
@@ -210,7 +218,7 @@ namespace StarterAssets
             // Cinemachine will follow this target
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(CinemachineCameraTarget.transform.rotation.eulerAngles.x,
                 _cinemachineTargetYaw, 0.0f);
-            
+
         }
 
         private void Move()
