@@ -10,6 +10,7 @@ public class PlayerSwitchViews : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera firstPersonCam;
     [SerializeField] private CinemachineVirtualCamera thirdPersonCam;
     [SerializeField] private CinemachineVirtualCamera isometricCam;
+    [SerializeField] private CinemachineVirtualCamera twoDimensionCam;
     
     //camera roots
     [SerializeField] private Transform thirdPersonCameraRoot;
@@ -23,12 +24,14 @@ public class PlayerSwitchViews : MonoBehaviour
     //controllers
     private ThirdPersonController thirdPersonController;
     private ThirdPersonIsometricController thirdPersonIsometricController;
+    private ThirdPersonTwoDimentionController thirdPersonTwoDimentionController;
 
     private void OnEnable()
     {
         CameraSwitcher.Register(firstPersonCam);
         CameraSwitcher.Register(thirdPersonCam);
         CameraSwitcher.Register(isometricCam);
+        CameraSwitcher.Register(twoDimensionCam);
 
     }
     private void OnDisable()
@@ -36,18 +39,23 @@ public class PlayerSwitchViews : MonoBehaviour
         CameraSwitcher.Unregister(firstPersonCam);
         CameraSwitcher.Unregister(thirdPersonCam);
         CameraSwitcher.Unregister(isometricCam);
+        CameraSwitcher.Unregister(twoDimensionCam);
     }
 
     private void Start()
     {
-        CameraSwitcher.SwitchCamera(isometricCam);
-        CameraSwitcher.SwitchCamera(thirdPersonCam);
+        //при старте выбираем нужную камеру
+        CameraSwitcher.SwitchCamera(twoDimensionCam);
+
+        //получаем ссылки на все контроллеры
         thirdPersonController = playerObject.GetComponent<ThirdPersonController>();
         thirdPersonIsometricController = playerObject.GetComponent<ThirdPersonIsometricController>();
-        //CameraSwitcher.SwitchCamera(isometricCam); //удолить
+        thirdPersonTwoDimentionController = playerObject.GetComponent<ThirdPersonTwoDimentionController>();
 
-        //при старте игры включить нужный вид и контроллер
-        thirdPersonController.enabled = true;
+        //при старте игры включить  контроллер
+        thirdPersonController.enabled = false;
+        thirdPersonIsometricController.enabled = false;
+        thirdPersonTwoDimentionController.enabled = true;
     }
 
     void Update()
@@ -121,6 +129,11 @@ public class PlayerSwitchViews : MonoBehaviour
     }
 
     public void ChangeToStaticThirdPerson(CinemachineVirtualCamera cam)
+    {
+
+    }
+
+    public void ChangeToTwoDimension()
     {
 
     }

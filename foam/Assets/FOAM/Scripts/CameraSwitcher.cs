@@ -15,11 +15,18 @@ public static class CameraSwitcher
 
     public static void SwitchCamera(CinemachineVirtualCamera camera)
     {
+        if (camera == null)
+        {
+            
+            Debug.Log("не вижу никакой камеры");
+            return;
+        }
+
         camera.Priority = 10;
         ActiveCamera = camera;
         foreach (var c in cameras)
         {
-            if(c != camera && c.Priority !=0)
+            if (c != camera && c.Priority != 0)
             {
                 c.Priority = 0;
             }
@@ -35,7 +42,7 @@ public static class CameraSwitcher
     public static void Unregister(CinemachineVirtualCamera camera)
     {
         cameras.Remove(camera);
-       // Debug.Log("camera unregistered" + camera);
+        // Debug.Log("camera unregistered" + camera);
     }
 
 }
