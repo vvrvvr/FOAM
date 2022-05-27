@@ -11,15 +11,11 @@ public class PlayerSwitchViews : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera thirdPersonCam;
     [SerializeField] private CinemachineVirtualCamera isometricCam;
     [SerializeField] private CinemachineVirtualCamera twoDimensionCam;
-    
-    //camera roots
-    [SerializeField] private Transform thirdPersonCameraRoot;
 
+    //ссылки на объекты и скрипты
     [SerializeField] private GameObject playerObject;
     [SerializeField] private ShaderController shaderController;
     [SerializeField] private Distance distaince;
-
-    private bool isFirstPerson;
 
     //controllers
     private ThirdPersonController thirdPersonController;
@@ -45,17 +41,17 @@ public class PlayerSwitchViews : MonoBehaviour
     private void Start()
     {
         //при старте выбираем нужную камеру
-        CameraSwitcher.SwitchCamera(twoDimensionCam);
+        CameraSwitcher.SwitchCamera(thirdPersonCam);
 
         //получаем ссылки на все контроллеры
         thirdPersonController = playerObject.GetComponent<ThirdPersonController>();
         thirdPersonIsometricController = playerObject.GetComponent<ThirdPersonIsometricController>();
         thirdPersonTwoDimentionController = playerObject.GetComponent<ThirdPersonTwoDimentionController>();
 
-        //при старте игры включить  контроллер
-        thirdPersonController.enabled = false;
+        //при старте игры включить  нужный контроллер
+        thirdPersonController.enabled = true;
         thirdPersonIsometricController.enabled = false;
-        thirdPersonTwoDimentionController.enabled = true;
+        thirdPersonTwoDimentionController.enabled = false;
     }
 
     void Update()
@@ -63,100 +59,105 @@ public class PlayerSwitchViews : MonoBehaviour
         SwitchFirstAndSecondView();
     }
 
+
+    //метод для отладки видов
     void SwitchFirstAndSecondView()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F)) // third
         {
-            if (isFirstPerson) //если щас изометрия
-            {                
-                thirdPersonIsometricController.enabled = false;
-                thirdPersonController.enabled = true;
-                ChangeToThirdView(); //изменить на вид от третьего лица
-                isFirstPerson = !isFirstPerson;
-            }
-            else // если вид от тертьего лица
-            {
-                isFirstPerson = !isFirstPerson;
-                
-                ChangeToIsometricView(); // изменить на изометрию
-                thirdPersonIsometricController.enabled = true;
-                thirdPersonController.enabled = false;
-            }
+            ChangeToThirdView();
         }
-    }
-    public void ChangeControllerScript(bool isFirstPerson)
-    {
-        if(isFirstPerson)
+        if (Input.GetKeyDown(KeyCode.G)) // isometric
         {
-            thirdPersonController.enabled = true;
+            ChangeToIsometricView();
         }
-        else
+        if (Input.GetKeyDown(KeyCode.H)) // first person
         {
-            thirdPersonController.enabled = false;
+            ChangeToFirsView();
         }
-        
+        if (Input.GetKeyDown(KeyCode.J)) // 2d
+        {
+            ChangeToTwoDimensionView(new Vector3(0f, -90f, 0f), true);
+        }
     }
 
     private void ChangeToFirsView()
     {
         CameraSwitcher.SwitchCamera(firstPersonCam);
-
-        
         shaderController.enabled = true;
-
         shaderController.StartChangeViewEffect(false);
-
         Debug.Log("to first person");
+
+        //выбор нужного контроллера управления
+        thirdPersonController.enabled = true;
+        thirdPersonIsometricController.enabled = false;
+        thirdPersonTwoDimentionController.enabled = false;
     }
 
     private void ChangeToThirdView()
     {
-        CameraSwitcher.SwitchCamera(thirdPersonCam);
-
+        //запуск шейдера на персонаже
         if (CameraSwitcher.IsActiveCamera(firstPersonCam))
         {
             shaderController.enabled = true;
             shaderController.StartChangeViewEffect(true);
         }
 
-        //Debug.Log("to third person");
+        //переключение камеры в паблик статик скрипте
+        CameraSwitcher.SwitchCamera(thirdPersonCam);
+        Debug.Log("to third person");
+
+        //выбор нужного контроллера управления
+        thirdPersonController.enabled = true;
+        thirdPersonIsometricController.enabled = false;
+        thirdPersonTwoDimentionController.enabled = false;
     }
 
     private void ChangeToIsometricView()
     {
-        CameraSwitcher.SwitchCamera(isometricCam);
+        //запуск шейдера на персонаже
         if (CameraSwitcher.IsActiveCamera(firstPersonCam))
         {
             shaderController.enabled = true;
             shaderController.StartChangeViewEffect(true);
         }
-        //Debug.Log("to isometric");
+
+        //переключение камеры в паблик статик скрипте
+        CameraSwitcher.SwitchCamera(isometricCam);
+
+        //выбор нужного контроллера управления
+        thirdPersonIsometricController.enabled = true;
+        thirdPersonController.enabled = false;
+        thirdPersonTwoDimentionController.enabled = false;
+
+        Debug.Log("to isometric");
+    }
+
+
+    public void ChangeToTwoDimensionView(Vector3 direction, bool isTwoDimentionLockControl)
+    {
+        //запуск шейдера на персонаже
+        if (CameraSwitcher.IsActiveCamera(firstPersonCam))
+        {
+            shaderController.enabled = true;
+            shaderController.StartChangeViewEffect(true);
+        }
+
+        //манипуляции с контроллером - выбор направления и лока w,s 
+        thirdPersonTwoDimentionController.isTwoDimentionLockControl = isTwoDimentionLockControl;
+        thirdPersonTwoDimentionController.camRootDesiredRotation = direction;
+
+        //переключение камеры в паблик статик скрипте
+        CameraSwitcher.SwitchCamera(twoDimensionCam);
+
+        //выбор нужного контроллера управления
+        thirdPersonTwoDimentionController.enabled = true;
+        thirdPersonController.enabled = false;
+        thirdPersonIsometricController.enabled = false;
     }
 
     public void ChangeToStaticThirdPerson(CinemachineVirtualCamera cam)
     {
 
     }
-
-    public void ChangeToTwoDimension()
-    {
-        CameraSwitcher.SwitchCamera(twoDimensionCam);
-        if (CameraSwitcher.IsActiveCamera(firstPersonCam))
-        {
-            shaderController.enabled = true;
-            shaderController.StartChangeViewEffect(true);
-        }
-    }
-
-    IEnumerator WaitA()
-    {
-        yield return new WaitForSeconds(1f);
-        
-    }
-    IEnumerator WaitB()
-    {
-        yield return new WaitForSeconds(1f);
-       
-    }
-
 }

@@ -70,7 +70,7 @@ namespace StarterAssets
         public float BottomClamp = -30.0f;
 
         [Tooltip("перемещение только в двух плоскостях")]
-        public bool isTwoDimentionControl = false;
+        public bool isTwoDimentionLockControl = false;
 
 
         private bool LockCameraPosition = true;
@@ -109,7 +109,7 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
-        [SerializeField] private Vector3 camRootDesiredRotation;
+        public Vector3 camRootDesiredRotation;
         private Quaternion rootRotation; 
         
         
@@ -127,6 +127,7 @@ namespace StarterAssets
         }
         private void OnEnable()
         {
+            rootRotation = Quaternion.Euler(camRootDesiredRotation);
             CinemachineCameraTarget.transform.rotation = rootRotation;
         }
 
@@ -227,7 +228,7 @@ namespace StarterAssets
         {
 
             Vector2 twoDimentionInput;
-            if(isTwoDimentionControl)
+            if(isTwoDimentionLockControl)
             {
                 twoDimentionInput = new Vector2(_input.move.x, 0f);
             }

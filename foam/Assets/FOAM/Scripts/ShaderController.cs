@@ -87,6 +87,7 @@ public class ShaderController : MonoBehaviour
 
         if (isFirstPerson)
         {
+            Debug.Log("first");
             m_Timer += Time.deltaTime;
 
             if (cutoff >= 1.0f)
@@ -97,6 +98,7 @@ public class ShaderController : MonoBehaviour
         }
         else
         {
+            Debug.Log("second");
             m_Timer -= Time.deltaTime;
 
             if (cutoff <= minCutoff)
