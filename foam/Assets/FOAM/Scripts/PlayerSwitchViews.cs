@@ -125,6 +125,11 @@ public class PlayerSwitchViews : MonoBehaviour
     private void ChangeToIsometricView()
     {
         CameraSwitcher.SwitchCamera(isometricCam);
+        if (CameraSwitcher.IsActiveCamera(firstPersonCam))
+        {
+            shaderController.enabled = true;
+            shaderController.StartChangeViewEffect(true);
+        }
         //Debug.Log("to isometric");
     }
 
@@ -135,7 +140,12 @@ public class PlayerSwitchViews : MonoBehaviour
 
     public void ChangeToTwoDimension()
     {
-
+        CameraSwitcher.SwitchCamera(twoDimensionCam);
+        if (CameraSwitcher.IsActiveCamera(firstPersonCam))
+        {
+            shaderController.enabled = true;
+            shaderController.StartChangeViewEffect(true);
+        }
     }
 
     IEnumerator WaitA()
