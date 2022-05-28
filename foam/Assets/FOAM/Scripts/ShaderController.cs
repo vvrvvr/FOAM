@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShaderController : MonoBehaviour
 {
-    
+
     [SerializeField] private float effectTime;
     public Material[] ChangeViewMaterials;
     //public GameObject respawnParticles;
@@ -49,7 +49,7 @@ public class ShaderController : MonoBehaviour
     void OnEnable()
     {
         //чёнить допишем
-        
+
     }
 
     public void StartChangeViewEffect(bool isFP)
@@ -77,7 +77,7 @@ public class ShaderController : MonoBehaviour
         if (!m_Started)
             return;
         ChangeTransition(isFirstPerson);
-        
+
     }
 
     private void ChangeTransition(bool isFirstPerson)
@@ -87,7 +87,7 @@ public class ShaderController : MonoBehaviour
 
         if (isFirstPerson)
         {
-            Debug.Log("first");
+
             m_Timer += Time.deltaTime;
 
             if (cutoff >= 1.0f)
@@ -98,7 +98,7 @@ public class ShaderController : MonoBehaviour
         }
         else
         {
-            Debug.Log("second");
+
             m_Timer -= Time.deltaTime;
 
             if (cutoff <= minCutoff)

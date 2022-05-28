@@ -15,36 +15,22 @@ namespace StarterAssets
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player")]
-        [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        [SerializeField] private PlayerControllerCommonSettings controllerSettings;
 
-        [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        private float MoveSpeed = 2.0f;
+        private float SprintSpeed = 5.335f;
+        private float RotationSmoothTime = 0.12f;
+        private float SpeedChangeRate = 10.0f;
+        private float JumpHeight = 1.2f;
+        private float Gravity = -15.0f;
+        private float JumpTimeout = 0.50f;
+        private float FallTimeout = 0.15f;
 
-        [Tooltip("How fast the character turns to face movement direction")]
-        [Range(0.0f, 0.3f)]
-        public float RotationSmoothTime = 0.12f;
-
-        [Tooltip("Acceleration and deceleration")]
-        public float SpeedChangeRate = 10.0f;
-
+        [Space(10)]
+        [Header("Sounds")]
         public AudioClip LandingAudioClip;
         public AudioClip[] FootstepAudioClips;
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
-
-        [Space(10)]
-        [Tooltip("The height the player can jump")]
-        public float JumpHeight = 1.2f;
-
-        [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
-        public float Gravity = -15.0f;
-
-        [Space(10)]
-        [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
-        public float JumpTimeout = 0.50f;
-
-        [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
-        public float FallTimeout = 0.15f;
 
         [Header("Player Grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
@@ -134,6 +120,16 @@ namespace StarterAssets
 
         private void Start()
         {
+            //настройки из конфига контроллера
+            MoveSpeed = controllerSettings.MoveSpeed;
+            SprintSpeed = controllerSettings.SprintSpeed;
+            RotationSmoothTime = controllerSettings.RotationSmoothTime;
+            SpeedChangeRate = controllerSettings.SpeedChangeRate;
+            JumpHeight = controllerSettings.JumpHeight;
+            Gravity = controllerSettings.Gravity;
+            JumpTimeout = controllerSettings.JumpTimeout;
+            FallTimeout = controllerSettings.FallTimeout;
+
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
