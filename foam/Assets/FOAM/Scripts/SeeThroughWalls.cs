@@ -52,7 +52,7 @@ public class SeeThroughWalls : MonoBehaviour
             while (currentSize < desiredSize  && isHit)
             {
                 wallMaterial.SetFloat(SizeID, currentSize);
-                Debug.Log("Coroutine working");
+                //Debug.Log("Coroutine working");
                 yield return null;
             }
         }
@@ -61,7 +61,7 @@ public class SeeThroughWalls : MonoBehaviour
             while (currentSize > 0.05f && !isHit)
             {
                 wallMaterial.SetFloat(SizeID, currentSize);
-                Debug.Log("Coroutine working");
+               // Debug.Log("Coroutine working");
                 yield return null;
             }
         }
