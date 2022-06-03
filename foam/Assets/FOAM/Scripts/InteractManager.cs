@@ -6,6 +6,7 @@ using ThunderWire.Utility;
 public class InteractManager : MonoBehaviour
 {
     public Camera mainCamera;
+    public Image CrosshairUILink;
     //private DraggableObject dragRigidbody;
 
     [Header("Raycast")]
@@ -40,6 +41,10 @@ public class InteractManager : MonoBehaviour
     {
         mainCamera = ScriptManager.Instance.MainCamera;
         RaycastObject = null;
+        CrosshairUI = CrosshairUILink;
+        default_interactCrosshair = interactCrosshair;
+        default_crosshairSize = crosshairSize;
+        default_interactSize = interactSize;
     }
 
 
@@ -56,6 +61,16 @@ public class InteractManager : MonoBehaviour
                 isCorrectLayer = true;
                 Debug.Log("hit interact object");
 
+                if (LastRaycastObject)
+                {
+                    if (!(LastRaycastObject == RaycastObject))
+                    {
+                       // ResetCrosshair();
+                    }
+                }
+                LastRaycastObject = RaycastObject;
+
+                CrosshairChange(true);
 
             }
             else if (RaycastObject)
@@ -71,8 +86,8 @@ public class InteractManager : MonoBehaviour
         if (!isCorrectLayer)
         {
             //ResetCrosshair();
-            //CrosshairChange(false);
-            //gameManager.HideSprites(HideHelpType.Interact);
+            CrosshairChange(false);
+            
             //interactItem = null;
             RaycastObject = null;
             //dynamicObj = null;
@@ -80,11 +95,37 @@ public class InteractManager : MonoBehaviour
 
         if (!RaycastObject)
         {
-            //gameManager.HideSprites(HideHelpType.Interact);
-            //CrosshairChange(false);
+            
+            CrosshairChange(false);
+
             //dynamicObj = null;
         }
 
     }
+
+    void CrosshairChange(bool useTexture)
+    {
+        if (useTexture && CrosshairUI.sprite != interactCrosshair)
+        {
+            CrosshairUI.sprite = interactCrosshair;
+            CrosshairUI.GetComponent<RectTransform>().sizeDelta = new Vector2(interactSize, interactSize);
+        }
+        else if (!useTexture && CrosshairUI.sprite != defaultCrosshair)
+        {
+            CrosshairUI.sprite = defaultCrosshair;
+            CrosshairUI.GetComponent<RectTransform>().sizeDelta = new Vector2(crosshairSize, crosshairSize);
+        }
+
+        CrosshairUI.DisableSpriteOptimizations();
+    }
+
+    private void ResetCrosshair()
+    {
+        crosshairSize = default_crosshairSize;
+        interactSize = default_interactSize;
+        interactCrosshair = default_interactCrosshair;
+    }
+
+
 
 }

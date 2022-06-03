@@ -188,7 +188,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 6.2679, y: 6.2679}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &128457659
 MonoBehaviour:
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 043d9c4a6a99bc141b3b2905d9bbd7b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4150,6 +4150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+  CrosshairUILink: {fileID: 128457659}
   RaycastRange: 5
   cullLayers:
     serializedVersion: 2
@@ -4157,10 +4158,10 @@ MonoBehaviour:
   interactLayers:
     serializedVersion: 2
     m_Bits: 256
-  defaultCrosshair: {fileID: 0}
-  interactCrosshair: {fileID: 0}
-  crosshairSize: 5
-  interactSize: 10
+  defaultCrosshair: {fileID: 21300000, guid: 043d9c4a6a99bc141b3b2905d9bbd7b1, type: 3}
+  interactCrosshair: {fileID: 21300000, guid: 614d8f026bc32f84c8c97ec5a5ce3d84, type: 3}
+  crosshairSize: 20
+  interactSize: 20
   isHeld: 0
   inUse: 0
   RaycastObject: {fileID: 0}
