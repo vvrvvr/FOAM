@@ -5,9 +5,9 @@ using ThunderWire.Utility;
 
 public class InteractManager : MonoBehaviour
 {
-    public Camera mainCamera;
+    private Camera mainCamera;
     public Image CrosshairUILink;
-    //private DraggableObject dragRigidbody;
+    private DraggableObject dragRigidbody;
 
     [Header("Raycast")]
     public float RaycastRange = 3;
@@ -57,7 +57,7 @@ public class InteractManager : MonoBehaviour
             if (interactLayers.CompareLayer(hit.collider.gameObject.layer))
             {
                 RaycastObject = hit.collider.gameObject;
-                //isDraggable = (dragRigidbody = RaycastObject.GetComponent<DraggableObject>()) != null;
+                isDraggable = (dragRigidbody = RaycastObject.GetComponent<DraggableObject>()) != null;
                 isCorrectLayer = true;
                 Debug.Log("hit interact object");
 
@@ -65,7 +65,7 @@ public class InteractManager : MonoBehaviour
                 {
                     if (!(LastRaycastObject == RaycastObject))
                     {
-                       // ResetCrosshair();
+                       ResetCrosshair();
                     }
                 }
                 LastRaycastObject = RaycastObject;
@@ -85,7 +85,7 @@ public class InteractManager : MonoBehaviour
 
         if (!isCorrectLayer)
         {
-            //ResetCrosshair();
+            ResetCrosshair();
             CrosshairChange(false);
             
             //interactItem = null;
