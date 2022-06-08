@@ -7,6 +7,8 @@ public class ScriptManager : Singleton<ScriptManager>
     [Header("Cameras")]
     public Camera MainCamera;
 
+    [HideInInspector] public bool IsGrabRaycast;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -50,6 +50,16 @@ public class InteractManager : MonoBehaviour
 
     void Update()
     {
+        if (UsePressed && RaycastObject && !isPressed && !isHeld && !inUse)
+        {
+            Interact(RaycastObject);
+            isPressed = true;
+        }
+        if (!UsePressed && isPressed)
+        {
+            isPressed = false;
+        }
+
         Ray playerAim = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
         if (Physics.Raycast(playerAim, out RaycastHit hit, RaycastRange, cullLayers))
@@ -65,7 +75,7 @@ public class InteractManager : MonoBehaviour
                 {
                     if (!(LastRaycastObject == RaycastObject))
                     {
-                       ResetCrosshair();
+                        ResetCrosshair();
                     }
                 }
                 LastRaycastObject = RaycastObject;
@@ -87,7 +97,7 @@ public class InteractManager : MonoBehaviour
         {
             ResetCrosshair();
             CrosshairChange(false);
-            
+
             //interactItem = null;
             RaycastObject = null;
             //dynamicObj = null;
@@ -95,7 +105,7 @@ public class InteractManager : MonoBehaviour
 
         if (!RaycastObject)
         {
-            
+
             CrosshairChange(false);
 
             //dynamicObj = null;
@@ -126,6 +136,9 @@ public class InteractManager : MonoBehaviour
         interactCrosshair = default_interactCrosshair;
     }
 
+    public void Interact(GameObject InteractObject)
+    {
 
+    }
 
 }
