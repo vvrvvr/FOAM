@@ -69,7 +69,7 @@ public class InteractManager : MonoBehaviour
                 RaycastObject = hit.collider.gameObject;
                 isDraggable = (dragRigidbody = RaycastObject.GetComponent<DraggableObject>()) != null;
                 isCorrectLayer = true;
-                Debug.Log("hit interact object");
+                //Debug.Log("hit interact object");
 
                 if (LastRaycastObject)
                 {

@@ -8,11 +8,12 @@ public class ScriptManager : Singleton<ScriptManager>
     public Camera MainCamera;
 
     [HideInInspector] public bool IsGrabRaycast;
+    [HideInInspector] public bool ScriptEnabledGlobal;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ScriptEnabledGlobal = true;
     }
 
     // Update is called once per frame

@@ -101,13 +101,13 @@ public class DragRigidbody : MonoBehaviour
 
             if (objectRaycast && !antiSpam && !gameManager.isWeaponZooming)
             {
-                if (crossPlatformInput.GetActionPressedOnce(this, "Examine")) // нажать кнопочку и по ходу взять или положить
+                if (Input.GetMouseButtonDown(0)) // нажать кнопочку и по ходу взять или положить
                 {
                     GrabObject = !GrabObject;
                 }
             }
 
-            if (crossPlatformInput.GetActionPressedOnce(this, "Zoom") && objectHeld) //нажать кнопочку и выбросить
+            if (Input.GetMouseButtonDown(1) && objectHeld) //нажать кнопочку и выбросить
             {
                 ThrowObject();
             }
@@ -304,16 +304,16 @@ public class DragRigidbody : MonoBehaviour
             fixedVelocityRigid.isKinematic = false;
         }
 
-        itemSwitcher.FreeHands(dragHideWeapon);
-        gameManager.UIPreventOverlap(true);
-        gameManager.ShowGrabSprites();
+        //itemSwitcher.FreeHands(dragHideWeapon);
+        //gameManager.UIPreventOverlap(true);
+        //gameManager.ShowGrabSprites();
         gameManager.isGrabbed = true;
-        delay.isEnabled = false;
-        pfunc.zoomEnabled = false;
+        //delay.isEnabled = false;
+        //pfunc.zoomEnabled = false;
         timeDropCheck = 0f;
 
         GetComponent<ScriptManager>().ScriptEnabledGlobal = false;
-        Physics.IgnoreCollision(objectHeld.GetComponent<Collider>(), transform.root.GetComponent<Collider>(), true);
+       // Physics.IgnoreCollision(objectHeld.GetComponent<Collider>(), transform.root.GetComponent<Collider>(), true);
         objectHeld.SendMessage("OnRigidbodyDrag", SendMessageOptions.DontRequireReceiver);
 
         isObjectHeld = true;
@@ -321,8 +321,8 @@ public class DragRigidbody : MonoBehaviour
 
     void HoldObject()
     {
-        interact.CrosshairVisible(false);
-        gameManager.HideSprites(HideHelpType.Interact);
+        //interact.CrosshairVisible(false);
+        //gameManager.HideSprites(HideHelpType.Interact);
         distance = Mathf.Clamp(distance, minDistanceZoom, maxDistanceZoom - 0.5f);
 
         Ray playerAim = playerCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -371,11 +371,11 @@ public class DragRigidbody : MonoBehaviour
 
     public void ResetDrag(bool throwObj)
     {
-        if (dragHideWeapon) itemSwitcher.FreeHands(false);
+        //if (dragHideWeapon) itemSwitcher.FreeHands(false);
 
         gameManager.LockPlayerControls(true, true, false);
-        gameManager.UIPreventOverlap(false);
-        gameManager.HideSprites(HideHelpType.Help);
+        //gameManager.UIPreventOverlap(false);
+        //gameManager.HideSprites(HideHelpType.Help);
         gameManager.isGrabbed = false;
 
         if (objectHeld && heldRigidbody)
@@ -385,7 +385,7 @@ public class DragRigidbody : MonoBehaviour
             heldRigidbody.useGravity = true;
             heldRigidbody.freezeRotation = false;
 
-            Physics.IgnoreCollision(objectHeld.GetComponent<Collider>(), transform.root.GetComponent<Collider>(), false);
+            //Physics.IgnoreCollision(objectHeld.GetComponent<Collider>(), transform.root.GetComponent<Collider>(), false);
             objectHeld.SendMessage("OnRigidbodyRelease", SendMessageOptions.DontRequireReceiver);
 
             if (throwObj)
@@ -403,10 +403,10 @@ public class DragRigidbody : MonoBehaviour
             }
         }
 
-        interact.CrosshairVisible(true);
+        //interact.CrosshairVisible(true);
         GetComponent<ScriptManager>().ScriptEnabledGlobal = true;
 
-        delay.isEnabled = true;
+        //delay.isEnabled = true;
         objectRaycast = null;
         objectHeld = null;
         heldRigidbody = null;
@@ -437,7 +437,7 @@ public class DragRigidbody : MonoBehaviour
 
     IEnumerator ResetZoom()
     {
-        yield return new WaitUntil(() => !crossPlatformInput.IsActionPressed("Zoom"));
-        pfunc.zoomEnabled = true;
+        yield return new WaitUntil(() => !Input.GetKeyDown(KeyCode.O));
+        //pfunc.zoomEnabled = true;
     }
 }
