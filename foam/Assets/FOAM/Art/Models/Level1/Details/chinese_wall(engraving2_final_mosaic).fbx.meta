@@ -3,7 +3,12 @@ guid: 5e3cfd966770dbd44abe487e23c4511e
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: engraving2_final_mosaic_engraving2_final_mosaic
+    second: {fileID: 2100000, guid: f037c31b40ea2ea47a41a6e5a33b98fe, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

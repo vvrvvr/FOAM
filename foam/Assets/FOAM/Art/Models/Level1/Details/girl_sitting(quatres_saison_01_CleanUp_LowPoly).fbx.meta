@@ -3,7 +3,12 @@ guid: ae0d065c6fb286f4c84ef1daa29476e3
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: quatres_saison_01_CleanUp_LowPoly
+    second: {fileID: 2100000, guid: 92e6512024f217147aa5c58ef5635f39, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
