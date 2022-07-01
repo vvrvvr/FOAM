@@ -6,7 +6,7 @@ public class DragRigidbody : MonoBehaviour
 {
     //private CrossPlatformInput crossPlatformInput;
     //private PlayerFunctions pfunc;
-    //private DelayEffect delay;
+    private DelayEffect delay;
     //private ItemSwitcher itemSwitcher;
     private bool inputsLoaded = true; //вот это надо подтащить из скрипта инпута 
     private Camera playerCam;
@@ -70,7 +70,7 @@ public class DragRigidbody : MonoBehaviour
 
     void Awake()
     {
-        //delay = transform.root.GetComponentInChildren<DelayEffect>(true);
+        delay = transform.root.GetComponentInChildren<DelayEffect>(true);
         //crossPlatformInput = CrossPlatformInput.Instance;
         //pfunc = GetComponent<PlayerFunctions>();
         scriptManager = ScriptManager.Instance;
@@ -208,21 +208,21 @@ public class DragRigidbody : MonoBehaviour
 
             scriptManager.IsGrabRaycast = objectRaycast != null;
 
-            if (objectHeld)
+            if (objectHeld) //вращение
             {
-                if (RotateButton && enableObjectRotation)
-                {
-                    heldRigidbody.freezeRotation = true;
-                    gameManager.LockPlayerControls(false, false, false);
-                    objectHeld.transform.Rotate(playerCam.transform.up, smoothRotation.x, Space.World);
-                    objectHeld.transform.Rotate(playerCam.transform.right, smoothRotation.y, Space.World);
-                    isRotatePressed = true;
-                }
-                else if (isRotatePressed)
-                {
-                    gameManager.LockPlayerControls(true, false, false);
-                    isRotatePressed = false;
-                }
+                //if (RotateButton && enableObjectRotation)
+                //{
+                //    heldRigidbody.freezeRotation = true;
+                //    gameManager.LockPlayerControls(false, false, false);
+                //    objectHeld.transform.Rotate(playerCam.transform.up, smoothRotation.x, Space.World);
+                //    objectHeld.transform.Rotate(playerCam.transform.right, smoothRotation.y, Space.World);
+                //    isRotatePressed = true;
+                //}
+                //else if (isRotatePressed)
+                //{
+                //    gameManager.LockPlayerControls(true, false, false);
+                //    isRotatePressed = false;
+                //}
             }
         }
         else
@@ -308,12 +308,12 @@ public class DragRigidbody : MonoBehaviour
         //gameManager.UIPreventOverlap(true);
         //gameManager.ShowGrabSprites();
         gameManager.isGrabbed = true;
-        //delay.isEnabled = false;
+        delay.isEnabled = false;
         //pfunc.zoomEnabled = false;
         timeDropCheck = 0f;
 
         GetComponent<ScriptManager>().ScriptEnabledGlobal = false;
-       // Physics.IgnoreCollision(objectHeld.GetComponent<Collider>(), transform.root.GetComponent<Collider>(), true);
+        Physics.IgnoreCollision(objectHeld.GetComponent<Collider>(), gameObject.GetComponent<CharacterController>(), true);
         objectHeld.SendMessage("OnRigidbodyDrag", SendMessageOptions.DontRequireReceiver);
 
         isObjectHeld = true;
@@ -385,7 +385,7 @@ public class DragRigidbody : MonoBehaviour
             heldRigidbody.useGravity = true;
             heldRigidbody.freezeRotation = false;
 
-            //Physics.IgnoreCollision(objectHeld.GetComponent<Collider>(), transform.root.GetComponent<Collider>(), false);
+            Physics.IgnoreCollision(objectHeld.GetComponent<Collider>(), gameObject.GetComponent<CharacterController>(), false);
             objectHeld.SendMessage("OnRigidbodyRelease", SendMessageOptions.DontRequireReceiver);
 
             if (throwObj)
@@ -406,7 +406,7 @@ public class DragRigidbody : MonoBehaviour
         //interact.CrosshairVisible(true);
         GetComponent<ScriptManager>().ScriptEnabledGlobal = true;
 
-        //delay.isEnabled = true;
+        delay.isEnabled = true;
         objectRaycast = null;
         objectHeld = null;
         heldRigidbody = null;
