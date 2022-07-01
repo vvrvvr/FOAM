@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1874302138576027329}
   - component: {fileID: 3291287212277838180}
   - component: {fileID: 741395201633535406}
+  - component: {fileID: 1634500906719883625}
   m_Layer: 0
   m_Name: gandhi(model_texture)
   m_TagString: Untagged
@@ -85,3 +86,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1634500906719883625
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245539355278468219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2214258264336267007, guid: 01fcf97370eb0cb448d1f6e42b736bd6, type: 3}

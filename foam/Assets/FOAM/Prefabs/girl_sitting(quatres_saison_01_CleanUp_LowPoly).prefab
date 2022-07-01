@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3354560838698630047}
   - component: {fileID: 1811028528747934778}
   - component: {fileID: 4523557498246824176}
+  - component: {fileID: 1184157321077422503}
   m_Layer: 0
   m_Name: girl_sitting(quatres_saison_01_CleanUp_LowPoly)
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2721893690231562533}
-  m_LocalRotation: {x: 0.2013448, y: 0.677835, z: 0.67783505, w: -0.20134474}
+  m_LocalRotation: {x: 0.5004361, y: 0.49956352, z: 0.49956352, w: -0.5004361}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 213.087}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 270.1}
 --- !u!33 &1811028528747934778
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1184157321077422503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721893690231562533}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.007802103, y: 0.009364352, z: 0.020495396}
+  m_Center: {x: 0.00027587236, y: 0.00024763972, z: 0.004056365}

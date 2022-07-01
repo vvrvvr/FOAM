@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2457052504927362585}
   - component: {fileID: 1564701431576056252}
   - component: {fileID: 3625988002933777782}
+  - component: {fileID: 1920011339120139537}
   m_Layer: 0
   m_Name: jackal(statue_panthere_-_LowPoly_u1_v1)
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1920011339120139537
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977693613659358371}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8418065028386344937, guid: d8e1a7cbeb8d1be4190f852ed0a2fc53, type: 3}

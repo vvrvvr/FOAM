@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5065199605915654885}
   - component: {fileID: 8206947896768206144}
   - component: {fileID: 6196980475581620618}
+  - component: {fileID: 7097848755155161445}
   m_Layer: 0
   m_Name: chinese_wall
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7097848755155161445
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5548686086193889375}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3532538498639754958, guid: 5e3cfd966770dbd44abe487e23c4511e, type: 3}

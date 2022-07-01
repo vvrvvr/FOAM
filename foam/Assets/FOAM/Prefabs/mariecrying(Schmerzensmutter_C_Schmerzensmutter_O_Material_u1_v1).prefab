@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2650673765654257289}
+  - component: {fileID: 3963617533743439331}
   m_Layer: 0
   m_Name: mariecrying(Schmerzensmutter_C_Schmerzensmutter_O_Material_u1_v1)
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.735, y: -72.116, z: 71.858}
+--- !u!65 &3963617533743439331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2650673765654257290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1146982, y: 0.8133657, z: 2.966801}
+  m_Center: {x: 0.021519128, y: 0.028732285, z: 0.06460357}
 --- !u!1 &3866754265524331917
 GameObject:
   m_ObjectHideFlags: 0
