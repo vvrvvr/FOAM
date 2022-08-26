@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Red Portal
-  m_Shader: {fileID: 4800000, guid: 530997305e5d72a4984c4be15ddb2ea9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8bd89a37f0ed2b3428e63e325968b2f0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -62,6 +62,9 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _GlitchDensity: 1.57
+    - _GlitchPeriod: 2
+    - _GlitchStrength: 0.0397
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -77,4 +80,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GlitchDirection: {r: 1, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []

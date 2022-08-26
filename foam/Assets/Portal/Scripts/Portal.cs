@@ -51,7 +51,7 @@ public class Portal : MonoBehaviour
 
         // Clipping
         portalСam.nearClipPlane = lookerPosition.magnitude;
-        //SetNearClipPlane();
+       // SetNearClipPlane();
     }
 
 
